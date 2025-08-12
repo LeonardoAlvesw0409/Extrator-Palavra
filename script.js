@@ -1,12 +1,30 @@
-const botaoMostrapalvras = document.querySelector('#botao-palavrachave');
+const botaoMostraPalavras = document.querySelector('#botao-palavrachave');
 
-botaoMostrapalvras.addEventListener('click', mostraPalavraChave);
+botaoMostraPalavras.addEventListener('click', mostraPalavrasChave);
 
-function mostraPalavraChave () {
+function mostraPalavrasChave() {
     const texto = document.querySelector('#entrada-de-texto').value;
-    const campoResutaldo = document.querySelector('#resultado-palavrachave');
-    const Palavras = texto.split(" ");
+    const campoResultado = document.querySelector('#resultado-palavrachave');
+    const palavrasChave = processaTexto(texto);
 
-    campoResultado.textContent = palavra.join(", ");
-
+    campoResultado.textContent = palavrasChave.join(", ");
 }
+
+function processaTexto(texto) {
+    let palavras = texto.split(/\P{L}+/u);
+    contaFrequencias = {};
+    let frequencias = {};
+    for (let i of palavras) {
+        frequencias[i] = 0;
+        for (let j of palavras) {
+            if (i == j) {
+                frequencias[i]++;
+            }
+        }
+    }
+
+    console.log(frequencias);
+
+    return palavras;
+}
+
